@@ -8,8 +8,8 @@ Owners who want the best mate for their pets. This application will list all int
 
 ```
   Ruby 2.7.2
-  Rails 6.0.3.4
-  NodeJS 12.18.3
+  Rails 6.1.3.2
+  Node v14.4.0
   Yarn 1.22.4
 ```
 
