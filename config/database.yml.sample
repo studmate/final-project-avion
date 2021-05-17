@@ -9,10 +9,13 @@ default: &default
 development: 
   <<: *default
   database: rails_project_development
+ 
 
 test:
   <<: *default
   database: rails_project_test
+
+
 
 production:
   <<: *default
