@@ -1,0 +1,34 @@
+<h1>Pets</h1>
+<%= link_to 'Home', home_index_path %>
+<br>
+<%= link_to 'Add Pet', new_pet_path %>
+<br>
+<table>
+  <thead>
+    <th>Name</th> 
+    <th>Breed</th>
+    <th>Specie</th>
+    <th>Birth</th>
+    <th>Age</th>
+    <th>Gender</th>
+    <th>Vaccinated</th>
+    <th>Photos</th>
+    <th colspan="4"></th>
+  </thead>
+  <tbody>
+    <% @pets.each do |pet| %>
+    <tr>
+      <td><%= pet.name %></td>
+      <td><%= pet.breed %></td>
+      <td><%= pet.specie %></td>
+      <td><%= pet.birthdate.strftime("%B %d, %Y") %></td>
+      <td><%= pet.age %></td>
+      <td><%= pet.gender ? 'Male' : 'Female' %></td>
+      <td><%= pet.vaccinated ? 'Yes' : 'No' %></td>
+      <td></td>
+      <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
+      <td><%= link_to 'Delete', pet, method: :delete, data: { confirm: 'Remove pet?'} %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

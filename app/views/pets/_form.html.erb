@@ -1,0 +1,34 @@
+<%= form_with(model: pet) do |form| %>
+  <% if pet.errors.any? %>
+  <ul>
+    <% pet.errors.each do |error| %>
+    <li><%= error.full_message %></li>
+    <% end %>
+  </ul>
+  <% end %>
+  <br>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <br>
+  <%= form.label :breed %>
+  <%= form.text_field :breed %>
+  <br>
+  <%= form.label :specie %>
+  <%= form.text_field :specie %>
+  <br>
+  <%= form.label :birthdate %>
+  <%= form.date_field :birthdate %>
+  <br>
+  <%= form.label :age %>
+  <%= form.number_field :age %>
+  <br>
+  <%= form.label :gender, 'Male', value: true %>
+  <%= form.radio_button :gender, true, checked: true, value: true %>
+  <%= form.label :gender, 'Female', value: false %>
+  <%= form.radio_button :gender, false, value: false %>
+  <br>
+  <%= form.label :vaccinated %>
+  <%= form.check_box :vaccinated %>
+  <br>
+  <%= form.submit 'save' %>
+<% end %>
