@@ -21,7 +21,15 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# gem for User Authentication
 gem 'devise'
+# gem for file uploads
+gem 'carrierwave'
+gem 'mini_magick'
+# gem for file validator
+gem 'file_validators'
+# gem for supporting multiple backends for storing the job queue
+gem 'delayed_job_active_record'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
