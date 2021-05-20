@@ -16,9 +16,9 @@ class ImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  # def default_url
-
-  # end
+  def default_url
+    "https://s3.amazonaws.com/vetterpc-images/pet_placeholderimage.jpg"
+  end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
@@ -36,8 +36,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  version :images do
-    process resize_to_fill: [100, 100]
+  version :thumb do
+    process resize_to_fit: [350, 350]
   end
 
   # Add an allowlist of extensions which are allowed to be uploaded.
