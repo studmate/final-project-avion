@@ -1,3 +1,4 @@
+
 <%= form_with(model: pet) do |form| %>
   <% if pet.errors.any? %>
   <ul>
@@ -29,6 +30,10 @@
   <br>
   <%= form.label :vaccinated %>
   <%= form.check_box :vaccinated %>
+  <br>
+  <%= form.label :images %>
+  <%= form.file_field :images, multiple: true %>
+  <%= form.hidden_field :images_cache %>
   <br>
   <%= form.submit 'save' %>
 <% end %>

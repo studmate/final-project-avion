@@ -6,4 +6,14 @@
 <p>Gender: <%= @pet.gender %></p>
 <p>Vaccinated: <%= @pet.vaccinated %></p>
 <br>
+<% if @pet.images? %>
+  <ul>
+  <% @pet.images.each do |img| %>
+    <li><%= link_to(image_tag(img.thumb.url, alt: "Image"), img.url, target: '_blank') %></li>
+  <% end %>
+  </ul>
+<% end %>
 <%= link_to 'back', pets_path %>
+
+
+
