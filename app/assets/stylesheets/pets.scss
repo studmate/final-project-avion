@@ -1,3 +1,13 @@
-// Place all the styles related to the pets controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+th {
+    border: 1px solid white;
+    text-align: center;
+    padding: 10px
+}
+
+td {
+    border: 1px solid grey;
+    border-radius: 2px;
+    background-color: grey;
+    text-align: center;
+    padding: 10px;
+}
