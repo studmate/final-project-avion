@@ -2,13 +2,18 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
+  include Cloudinary::CarrierWave
 
+  process convert: 'png'
+  process tags: ['pet_images']
+  
+  storage :file
   # Choose what kind of storage to use for this uploader:
-  if Rails.env.production?
-    storage :fog
-  else
-    storage :file
-  end
+  # if Rails.env.production?
+  #   storage :fog
+  # else
+  #   storage :file
+  # end
   
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -16,9 +21,9 @@ class ImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  def default_url
-    "https://s3.amazonaws.com/vetterpc-images/pet_placeholderimage.jpg"
-  end
+  # def default_url
+  #   "https://s3.amazonaws.com/vetterpc-images/pet_placeholderimage.jpg"
+  # end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
@@ -36,8 +41,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
+  version :standard do
+    process resize_to_fit: [100, 150, :north]  
+  end
+
   version :thumb do
-    process resize_to_fit: [350, 350]
+    process resize_to_fit: [50, 50]
   end
 
   # Add an allowlist of extensions which are allowed to be uploaded.
@@ -50,5 +59,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename
   #   "something.jpg" if original_filename
+  # end
+
+  # def public_id
+  #   return "Images/" + Cloudinary::Utils.random_public_id
   # end
 end
