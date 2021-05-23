@@ -9,7 +9,7 @@
 <% if @pet.images? %>
   <ul>
   <% @pet.images.each do |img| %>
-    <li><%= link_to(image_tag(img.thumb.url, alt: "Image"), img.url, target: '_blank') %></li>
+    <li><%= cl_image_tag("#{img.public_id}", width: 90, height: 130) %></li>
   <% end %>
   </ul>
 <% end %>

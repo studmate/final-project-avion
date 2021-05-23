@@ -41,8 +41,10 @@
     </label>
     <% end %>
   <% end %>
+  
   <%= form.file_field :images, multiple: true %>
   <%= form.hidden_field :images_cache %>
+  
   <br>
   
   <%= form.submit 'save' %>
