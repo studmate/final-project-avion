@@ -1,0 +1,13 @@
+development:
+  cloud_name: "dljiokqzl"
+  api_key: "686938429345529"
+  api_secret: "FSBybfsNJzCM5IHbT_dw4xCFWzk"
+  secure: true
+  cdn_subdomain: true
+
+production:
+  cloud_name: "dljiokqzl"
+  api_key: "686938429345529"
+  api_secret: "FSBybfsNJzCM5IHbT_dw4xCFWzk"
+  secure: true
+  cdn_subdomain: true
