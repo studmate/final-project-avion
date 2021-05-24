@@ -4,6 +4,8 @@ development:
   api_secret: "FSBybfsNJzCM5IHbT_dw4xCFWzk"
   secure: true
   cdn_subdomain: true
+  enhance_image_tag: true
+  static_file_support: false
 
 production:
   cloud_name: "dljiokqzl"
@@ -11,3 +13,5 @@ production:
   api_secret: "FSBybfsNJzCM5IHbT_dw4xCFWzk"
   secure: true
   cdn_subdomain: true
+  enhance_image_tag: true
+  static_file_support: true
