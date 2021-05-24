@@ -8,16 +8,22 @@ class PetsController < ApplicationController
   def show
   end
 
+
   def new
     @pet = current_user.pets.build
   end
 
   def create
     @pet = current_user.pets.build(pet_params)
-    if @pet.save
-      redirect_to pets_path, notice: "Pet created!"
-    else
-      render :new, status: :unprocessable_entity
+    
+    respond_to do |format|
+      if @pet.save
+        format.html { redirect_to pets_path, notice: "Pet created!" }
+        format.json { render :show, status: :created, location: @pet }
+      else
+        format.html { render :new }
+        format.json { render json: @pet.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -25,16 +31,23 @@ class PetsController < ApplicationController
   end
 
   def update
-    if @pet.update(pet_params)
-      redirect_to pets_path, notice: "Pet updated!"
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @pet.update(pet_params)
+        format.html { redirect_to pets_path, notice: "Pet updated!" }
+        format.json { render :show, status: :ok, location: @pet }
+      else
+        format.html { render :edit }
+        format.json { render :json, @pet.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def destroy
     @pet.destroy
-    redirect_to pets_path, notice: "Pet deleted!"
+    respond_to do |format|
+      format.html { redirect_to pets_path, notice: "Pet was deleted!" }
+      format.json { head :no_content }
+    end
   end
 
   private
