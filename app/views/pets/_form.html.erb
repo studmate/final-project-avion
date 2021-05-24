@@ -11,11 +11,11 @@
   <%= form.label :name %>
   <%= form.text_field :name %>
   <br>
+  <%= form.label :specie %>
+  <%= form.select :specie, ['Dog', 'Cat'] %>
+  <br>
   <%= form.label :breed %>
   <%= form.text_field :breed %>
-  <br>
-  <%= form.label :specie %>
-  <%= form.text_field :specie %>
   <br>
   <%= form.label :birthdate %>
   <%= form.date_field :birthdate %>
@@ -31,21 +31,29 @@
   <%= form.label :vaccinated %>
   <%= form.check_box :vaccinated %>
   <br>
-  <%= form.label :images %>
+
   <% if pet.images? %>
     <% pet.images.each do |img| %>
-    <%= image_tag(img.url) %>
-    <label>
-    <%= form.check_box :remove_images %>
-    Remove image
-    </label>
+    <%= image_tag img.thumbnail.url %>
+    <%= label_tag :remove_images do %>
+      Remove image
+      <%= form.check_box :remove_images %>
+    <% end %>
+    <%= cl_image_tag(img.thumbnail.public_id) %>
     <% end %>
   <% end %>
-  
-  <%= form.file_field :images, multiple: true %>
-  <%= form.hidden_field :images_cache %>
-  
   <br>
-  
+  <%= form.label :images, "Upload Photos" %>
+  <br>
+  <% if Rails.env.production? %>
+    <%= form.cl_image_upload :images, multiple: true %>
+    <%= form.hidden_field :images_cache %>
+  <% else %>
+    <% pet.images.each do |image| %>
+      <%= hidden_field :pet, :images, multiple: true, value: image.identifier %>
+    <% end %>
+    <%= form.file_field :images, multiple: true %>
+  <% end %>
+  <br>
   <%= form.submit 'save' %>
 <% end %>

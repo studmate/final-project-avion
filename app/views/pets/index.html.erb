@@ -12,7 +12,9 @@
     <th>Age</th>
     <th>Gender</th>
     <th>Vaccinated</th>
-    <th>Photos</th>
+    <% unless Rails.env.production? %>
+     <th>Photos count</th>
+    <% end %>
     <th colspan="4"></th>
   </thead>
   <tbody>
@@ -25,9 +27,11 @@
       <td><%= pet.age %></td>
       <td><%= pet.gender ? 'Male' : 'Female' %></td>
       <td><%= pet.vaccinated ? 'Yes' : 'No' %></td>
+      <% unless Rails.env.production? %>
       <td>
-        <%= pet.images.count %>
+        <%= pet.images.count%>
       </td>
+      <% end %>
       <td><%= link_to 'Show', pet_path(pet) %></td>
       <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
       <td><%= link_to 'Delete', pet, method: :delete, data: { confirm: 'Remove pet?'} %></td>

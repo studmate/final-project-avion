@@ -6,14 +6,15 @@
 <p>Gender: <%= @pet.gender %></p>
 <p>Vaccinated: <%= @pet.vaccinated %></p>
 <br>
-<% if @pet.images? %>
-  <ul>
-  <% @pet.images.each do |img| %>
-    <li><%= cl_image_tag("#{img.public_id}", width: 90, height: 130) %></li>
+<ul>
+<% @pet.images.each do |img| %>
+  <% if Rails.env.production? %>
+    <li><%= link_to cl_image_tag(img.thumbnail.url, alt: "Image") %></li>
+  <% else %>
+    <li><%= link_to(image_tag(img.thumbnail.url, alt: "Image" ), img.url, target: '_blank') %></li>
   <% end %>
-  </ul>
 <% end %>
+</ul>
+<br>
 <%= link_to 'back', pets_path %>
-
-
 
