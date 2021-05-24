@@ -7,20 +7,17 @@ class ImageUploader < CarrierWave::Uploader::Base
   process convert: 'png'
   process tags: ['pet_images']
   
-  storage :file
   # Choose what kind of storage to use for this uploader:
-  # if Rails.env.production?
-  #   storage :fog
-  # else
-  #   storage :file
-  # end
+  unless Rails.env.production?
+    storage :file
+  end
   
-  # Override the directory where uploaded files will be stored.
-  # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
-
+  # Override the directory where uploaded files will be stored.
+  # This is a sensible default for uploaders that are meant to be mounted:
+  
   # def default_url
   #   "https://s3.amazonaws.com/vetterpc-images/pet_placeholderimage.jpg"
   # end
@@ -42,13 +39,16 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :standard do
-    process resize_to_fit: [100, 150, :north]  
+    process resize_to_fill: [100, 150, :north]  
   end
 
-  version :thumb do
+  version :thumbnail do
     process resize_to_fit: [50, 50]
   end
-
+  
+  # CarrierWave.configure do |config|
+  #   config.cache_storage = :file
+  # end
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_allowlist
@@ -62,6 +62,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # def public_id
-  #   return "Images/" + Cloudinary::Utils.random_public_id
+  #   return "pets/" + Cloudinary::Utils.random_public_id
   # end
 end
