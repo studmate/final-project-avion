@@ -15,9 +15,14 @@ class PetsController < ApplicationController
 
   def create
     @pet = current_user.pets.build(pet_params)
-    
     respond_to do |format|
       if @pet.save
+        if params[:images]
+          params[:images].each do |image|
+            @pet.create(image: image)
+            Cloudinary::Uploader.upload(image)
+          end
+        end
         format.html { redirect_to pets_path, notice: "Pet created!" }
         format.json { render :show, status: :created, location: @pet }
       else
