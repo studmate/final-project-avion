@@ -1,34 +1,8 @@
 
- <style>
-      #menu-toggle:checked + #menu {
-        display: block;
-      }
-  </style>
+<%= render 'shared/header'%>
+
 
 <body class="antialiased bg-blue-200">
-  <header class="lg:px-16 px-6  flex flex-wrap items-center lg:py-0 py-2 text-lg">
-    <div class="flex-1 flex justify-between items-center text-gray-700 hover:text-white font-bold">
-      <a href="#">
-       StudMate
-    </a>
-  </div> 
-
-   <label for="menu-toggle" class="pointer-cursor lg:hidden block"><svg class="fill-current text-gray-900" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path></svg></label>
-  <input class="hidden" type="checkbox" id="menu-toggle" />
-
-  <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
-    <nav>
-      <ul class="lg:flex items-center justify-between text-gray-700 pt-4 lg:pt-0 text-lg">
-        <li><a class="lg:p-4 py-3 px-0 block  hover:text-white font-bold" href="#">About Us</a></li>
-        <li><a class="lg:p-4 py-3 px-0 block  hover:text-white font-bold" href="#">Contact</a></li>
-        <li><a class="lg:p-4 py-3 px-0 block  hover:text-white font-bold" href="users/sign_in">Log in</a></li>
-        <li><a class="lg:p-4 py-3 px-0 block  hover:text-white font-bold" lg:mb-0 mb-2" href="#">Sign up</a></li>
-      </ul>
-    </nav>
-  </div>
-
-  </header>
- 
 <div class="sm:grid md:grid grid-cols-2 gap-4">
   <div class = "px-16 my-20"> 
   <h1 class = "font-bold italic text-6xl text-gray-700 text-bold text-center">
@@ -44,12 +18,12 @@
    and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
    </p>
   </div>
- <div class="px-16">
-    <div class="max-w-3xl bg-white rounded-xl shadow-2xl my-16 p-5">
-    <%=image_tag("landing image")%>  
+ <div class="px-16 ">
+    <div class="max-w-4xl rounded-2xl my-16 flex flex-wrap content-center", >
+    <%=image_tag("dogs", width:'75%')%>  
     </div>
 </div>
     
   </div>
-</body>
 
+</body>
