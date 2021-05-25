@@ -4,17 +4,27 @@ class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   include Cloudinary::CarrierWave
 
-  process convert: 'png'
-  process tags: ['pet_images']
+  # process convert: 'png'
+  # process tags: ['pet_images']
   
   # Choose what kind of storage to use for this uploader:
   unless Rails.env.production?
     storage :file
+
+    def store_dir
+      "uploads/#{model.class.to_s.underscore}/#{mounted_as}"
+    end
+
+    # def filename
+    #   "#{public_id}.#{file.extension}" if original_filename.present?
+    # end
+
+    # def public_id
+    #   "#{store_dir}/#{model.id}"
+    # end
   end
   
-  def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-  end
+  
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   
@@ -38,12 +48,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  version :standard do
-    process resize_to_fill: [100, 150, :north]  
-  end
+  # version :standard do
+  #   process resize_to_fill: [100, 150, :north]  
+  # end
 
-  version :thumbnail do
-    process resize_to_fit: [50, 50]
+  version :thumb do
+    process resize_to_fit: [150, 150]
   end
   
   # CarrierWave.configure do |config|
@@ -61,7 +71,4 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
-  # def public_id
-  #   return "pets/" + Cloudinary::Utils.random_public_id
-  # end
 end
