@@ -34,12 +34,12 @@
 
   <% if pet.images? %>
     <% pet.images.each do |img| %>
-    <%= image_tag img.thumbnail.url %>
+    <%= image_tag img.thumb.public_id %>
     <%= label_tag :remove_images do %>
       Remove image
       <%= form.check_box :remove_images %>
     <% end %>
-    <%= cl_image_tag(img.thumbnail.public_id) %>
+    <%= cl_image_tag(img.thumb.public_id) %>
     <% end %>
   <% end %>
   <br>
