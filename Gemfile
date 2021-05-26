@@ -26,10 +26,13 @@ gem 'devise'
 # gem for file uploads
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'fog-aws'
 # gem for file validator
 gem 'file_validators'
 # gem for supporting multiple backends for storing the job queue
 gem 'delayed_job_active_record'
+# gem for hiding aws s3 API keys
+gem 'figaro'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
