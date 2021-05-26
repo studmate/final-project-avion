@@ -12,7 +12,7 @@
     <% if Rails.env.production? %>
       <li><%= cl_image_tag(img.thumb.public_id, alt: "Image") %></li>
     <% else %>
-      <li><%= link_to(image_tag "#{img.thumb.public_id}") %></li>
+      <li><%= link_to(image_tag(img.thumb.url.to_s), img.url, alt: "Image") %></li>
     <% end %>
   <% end %>
   </ul>

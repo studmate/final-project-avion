@@ -4,16 +4,16 @@ class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   include Cloudinary::CarrierWave
 
-  # process convert: 'png'
-  # process tags: ['pet_images']
+  process convert: 'png'
+  process tags: ['pet_images']
   
   # Choose what kind of storage to use for this uploader:
   unless Rails.env.production?
     storage :file
 
-    def store_dir
-      "uploads/#{model.class.to_s.underscore}/#{mounted_as}"
-    end
+    # def store_dir
+    #   "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    # end
 
     # def filename
     #   "#{public_id}.#{file.extension}" if original_filename.present?
