@@ -8,7 +8,7 @@ CarrierWave.configure do |config|
       region: 'ap-southeast-1'                             # Singapore
     }
     config.fog_directory  = ENV["AWS_BUCKET"]              # required
-    config.storage
+    config.storage = :fog
   else
     config.storage = :file
     config.enable_processing = Rails.env.development?
