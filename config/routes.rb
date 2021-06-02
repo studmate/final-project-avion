@@ -4,5 +4,12 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'home/about'
   
-  resources :pets
+  resources :pets do
+    resources :matches do
+      collection do
+        get 'accept_match'
+        get 'decline_match'
+      end
+    end
+  end
 end
