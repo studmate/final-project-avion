@@ -15,7 +15,7 @@ class User < ApplicationRecord
              { value: signin.to_s.downcase.gsub(/\s+/, '')}]).first
   end
 
-  has_many :pets
+  has_many :pets, dependent: :destroy
   validates :username, :email, :password, :password_confirmation, presence: true
   validates :username, :email, uniqueness: true
 end
