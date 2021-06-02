@@ -18,8 +18,7 @@ ActiveRecord::Schema.define(version: 2021_05_28_071615) do
   create_table "matches", force: :cascade do |t|
     t.integer "requestor_id"
     t.integer "receiver_id"
-    t.boolean "accepted", default: false
-    t.string "status"
+    t.boolean "status", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
