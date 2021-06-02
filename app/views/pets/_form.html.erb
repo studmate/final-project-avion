@@ -15,12 +15,12 @@
   <%= form.text_field :breed %>
   <br>
   <%= form.label :specie %>
-  <%= form.text_field :specie %>
+  <%= form.select :specie, ['Dog', 'Cat'] %>
   <br>
   <%= form.label :birthdate %>
   <%= form.date_field :birthdate %>
   <br>
-  <%= form.label :age %>
+  <%= form.label "Age(months)" %>
   <%= form.number_field :age %>
   <br>
   <%= form.label :gender, 'Male', value: true %>
@@ -40,6 +40,10 @@
     Remove image
     </label>
     <% end %>
+  <% end %>
+  
+  <% pet.images.each do |image| %>
+    <%= hidden_field :pet, :images, multiple: true, value: image.identifier %>
   <% end %>
   <%= form.file_field :images, multiple: true %>
   <%= form.hidden_field :images_cache %>
