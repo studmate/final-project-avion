@@ -3,6 +3,9 @@ class PetsController < ApplicationController
 
   def index
     @pets = current_user.pets
+    @matches = current_user.pets.matches
+    @pending_matches = current_user.pets.pending_matches 
+    @received_matches = current_user.pets.received_matches
   end
 
   def show
