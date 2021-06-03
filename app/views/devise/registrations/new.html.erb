@@ -1,31 +1,34 @@
-<div class="center">
-<h2>Sign up</h2>
-
+<%= render 'shared/header'%>
+<body class = "bg-blue-200">
+  <h2 class="mt-20 text-center text-3xl font-extrabold text-gray-900 mb-8">
+        Register an Account
+  </h2>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div  class="max-w-md mx-auto md:max-w-2xl">
+  <div class="field text-center">
+    <%= f.text_field :username, autofocus: true, autocomplete: "username", class:"px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12 mb-3" , placeholder:"Username"%>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
+  <div class="field text-center">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12 mb-3" , placeholder:"Email address"%>
+  </div>
+  <div class="field text-center">
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "new-password",class:" mb-4 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12", placeholder:"Password" %>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="field text-center">
+   <%= f.password_field :password_confirmation, autocomplete: "new-password", class:" mb-4 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12", placeholder:" Confirm Password"  %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="actions text-center">
+    <%= f.submit "Sign up",class:" mb-2 cursor-pointer justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 w-3/12" %>
   </div>
 <% end %>
+  <div class=" text-center font-medium">
+Already have an Account? <%= link_to "Sign in here", new_session_path(resource_name), {:style=>'color:blue;'}  %>
+ </div>
 
-<%= render "devise/shared/links" %>
+</div>
+</div>
+
 </div>
