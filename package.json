@@ -8,6 +8,8 @@
     "@rails/webpacker": "5.3.0",
     "autoprefixer": "^10.2.6",
     "postcss": "^8.3.0",
+    "stimulus": "^2.0.0",
+    "stimulus-carousel": "^2.0.0",
     "tailwindcss": "^2.1.2",
     "turbolinks": "^5.2.0",
     "webpack": "^4.46.0",
