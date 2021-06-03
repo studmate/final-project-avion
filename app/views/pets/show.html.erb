@@ -1,19 +1,71 @@
-<p>Name: <%= @pet.name %></p>
-<p>Breed: <%= @pet.breed %></p>
-<p>Specie: <%= @pet.specie %></p>
-<p>Birthdate: <%= @pet.birthdate %></p>
-<p>Age: <%= @pet.age %></p>
-<p>Gender: <%= @pet.gender %></p>
-<p>Vaccinated: <%= @pet.vaccinated %></p>
-<br>
-<% if @pet.images? %>
-  <ul>
+
+<body class = "bg-blue-200">
+<div class="grid grid-cols-3">
+<div class="relative min-h-screen md:flex ">
+  <!-- sidebar -->
+  <div class="sidebar bg-white shadow-2xl text-blue-100 w-8/12  absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
+ <a href="#" class="block p-6  text-blue font-white bg-blue-800">My Pets</a>
+  <div class="block p-3 text-black font-white bg-white shadow-2xl ">
+   <a href="#" class=" ml-2 mr-12 hover:underline">Matches</a>
+    <a href="#" class="hover:underline ">Messages</a>
+  </div>
+
+    <!-- nav -->
+    <nav>
+      
+    </nav>
+  </div>
+</div>
+
+<div class="tbg mx-auto my-0 mt-3 bg-white border border-gray-400">
+  
+  <div class="theader flex justify-between bg-gray-200 border-b border-gray-400">
+    <div class="flex items-center text-gray-500 text-center px-5">
+    </div>
+    
+    <div class="flex items-center text-center">
+      <div class="tlogo w-full relative mx-0 my-auto p-2">
+      </div>
+    </div>
+    
+  
+  </div>
+  <div class="p-3 flex flex-col items-center">
+    <div class="tphoto rounded-lg border border-gray-400 shadow-lg">
+      <% if @pet.images? %>
   <% @pet.images.each do |img| %>
-    <li><%= link_to(image_tag(img.thumb.url, alt: "Image"), img.url, target: '_blank') %></li>
+    <%=image_tag(img.thumb.url, alt: "Image",  :class => "object-fill h-72 w-full rounded-lg") %>
   <% end %>
-  </ul>
 <% end %>
-<%= link_to 'back', pets_path %>
-
-
-
+      <div class="flex justify-between">
+        <div class="tname text-xl float-left p-4"><%=@pet.name%> <span class="font-light"><%=@pet.age%></span></div>
+        <div class="tinfo text-lg float-right text-gray-500 p-4">
+  
+        </div>
+      </div>
+      
+      <div class="pl-4 text-gray-400">
+        <span>3 km away</span>
+      </div>
+      
+    </div>
+    
+    
+    <div class="flex items-center justify-center w-full h-full pt-12">
+      <div class="bg-white rounded-full relative text-6xl tno">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </div>
+      <div class="ti rounded-full relative">
+        <i class="fa fa-info" aria-hidden="true"></i>
+      </div>
+      <div class="bg-white rounded-full relative  text-6xl tyes">
+        <i class="fa fa-heart" aria-hidden="true"></i>
+      </div>
+    </div>
+    
+    
+  </div>
+<!--   <div class="credit">
+    <a href="http://themakery.jcink.net">Originally created by Miami</a>
+  </div> -->
+</div>
