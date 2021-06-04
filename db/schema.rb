@@ -16,11 +16,13 @@ ActiveRecord::Schema.define(version: 2021_05_28_071615) do
   enable_extension "plpgsql"
 
   create_table "matches", force: :cascade do |t|
-    t.integer "requestor_id"
-    t.integer "receiver_id"
+    t.bigint "requestor_id", null: false
+    t.bigint "receiver_id", null: false
     t.boolean "status", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["receiver_id"], name: "index_matches_on_receiver_id"
+    t.index ["requestor_id"], name: "index_matches_on_requestor_id"
   end
 
   create_table "pets", force: :cascade do |t|
@@ -51,4 +53,6 @@ ActiveRecord::Schema.define(version: 2021_05_28_071615) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "matches", "pets", column: "receiver_id"
+  add_foreign_key "matches", "pets", column: "requestor_id"
 end
