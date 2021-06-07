@@ -8,8 +8,16 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+import { Application } from "stimulus"
+import Carousel from "stimulus-carousel"
+const application = Application.start()
+application.register("carousel", Carousel)
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
 import "stylesheets/applications" // Add this line
+import "controllers"
+import 'swiper/swiper-bundle.min.css'
+
