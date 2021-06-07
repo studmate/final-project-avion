@@ -5,14 +5,13 @@ class Pet < ApplicationRecord
 
   belongs_to :user
 
-  has_many :matches_sent, foreign_key: :requestor_id, class_name: 'Match', inverse_of: 'requestor', dependent: :destroy
-  has_many :matches_request, foreign_key: :receiver_id, class_name: 'Match', inverse_of: 'receiver', dependent: :destroy
+  has_many :match_sent, class_name: 'Match', foreign_key: 'sent_by_id', inverse_of: 'sent_by', dependent: :destroy
+  has_many :match_request, class_name: 'Match', foreign_key: 'sent_to_id', inverse_of: 'sent_to', dependent: :destroy
   
-  has_many :success_matches, -> { merge(Match.match_true) }, through: :matches_sent, source: :receiver
-  has_many :pending_matches, -> { merge(Match.match_false) }, through: :matches_sent, source: :receiver
-  has_many :received_matches, -> { merge(Match.match_false) }, through: :matches_request, source: :requestor
+  has_many :matches, -> { merge(Match.matched) }, through: :match_sent, source: :sent_to
+  has_many :sent_requests, -> { merge(Match.not_matched) }, through: :match_sent, source: :sent_to
+  has_many :received_requests, -> { merge(Match.not_matched) }, through: :match_request, source: :sent_by
 
   validates :name, :breed, :specie, :birthdate, :age, presence: true
   validates :images, file_size: { less_than: 1.megabytes }
-
 end

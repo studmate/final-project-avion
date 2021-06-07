@@ -1,3 +1,9 @@
-// Place all the styles related to the matches controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.flex {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid black;
+}
+
+.flex > div {
+    border: 1px solid black;
+}

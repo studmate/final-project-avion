@@ -1,35 +1,61 @@
 class MatchesController < ApplicationController
   include ApplicationHelper
-  
+    
+  def index
+    @pets = Pet.all
+    @pet = Pet.find(params[:pet_id])
+    @matches = @pet.matches
+    @sent_requests = @pet.sent_requests
+    @received_requests = @pet.received_requests
+  end
+
+  def show
+    @pet = Pet.find(params[:id])
+  end
+
   def create
-    return if current_user.pets(:pet_id) == params[:pet_id]
-    return if match_request_sent?(current_user.pets.find(params[:pet_id]))
-    return if match_request_received?(current_user.pets.find(params[:pet_id]))
+    return if current_user.pets.find(params[:pet_id]).id == params[:pet_id]
+    return if match_request_sent?(Pet.find(params[:pet_id]))
+    return if match_request_received?(Pet.find(params[:pet_id]))
 
     @pet = current_user.pets.find(params[:pet_id])
-    @match = current_user.pets.match.build(receiver_id: params[:pet_id])
-    @match.save
-    
+    @match = @pet.match_sent.build(sent_to_id: params[:pet_id])
+    if @match.save
+        flash[:success] = 'Request Sent!'
+    else
+        flash[:danger] = 'Request Failed!'
+    end
     redirect_back(fallback_location: root_path)
   end
 
+  def destroy
+    @match.destroy
+    redirect_to pet_matches_path(@pet), notice: 'Match deleted!'
+  end
+
   def accept_match
-    @match = Match.find_by(requestor_id: params[:pet_id], receiver_id: current_user.pets(:id). status: false)
+    @pet = current_user.pets.find(params[:pet_id])
+    @match = Match.find_by(sent_by_id: params[:pet_id], sent_to_id: @pet.id, status: false)
     return unless @match
 
     @match.status = true
-    @match.save
-    @match2 = current_user.pets(:pet_id).matches_as_requestor.build(receiver_id: params[:pet_id], status: true)
-    @match2.save
-
+    if @match.save
+        flash[:success] = 'Request Accepted!'
+        @match2 = @pet.match_sent.build(sent_to_id: params[:pet_id], status: true)
+        @match2.save
+    else
+        flash[:danger] = 'Request not Accepted!'
+    end
     redirect_back(fallback_location: root_path)
   end
 
   def decline_match
-    @match = Match.find_by(requestor_id: params[:pet_id], receiver_id: current_user.pets(:id), status: false)
+    @pet = current_user.pets.find(params[:pet_id])
+    @match = Match.find_by(sent_by_id: params[:pet_id], sent_to_id: @pet.id, status: false)
     return unless @match
-    
+
     @match.destroy
+    flash[:success] = 'Request Declined!'
     redirect_back(fallback_location: root_path)
   end
 end

@@ -28,6 +28,7 @@
       <td>
         <%= pet.images.count %>
       </td>
+      <td><%= link_to 'Matches', pet_matches_path(pet) %></td>
       <td><%= link_to 'Show', pet_path(pet) %></td>
       <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
       <td><%= link_to 'Delete', pet, method: :delete, data: { confirm: 'Remove pet?'} %></td>

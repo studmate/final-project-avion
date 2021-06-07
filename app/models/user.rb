@@ -12,7 +12,7 @@ class User < ApplicationRecord
     where(conditions)
     .where(["lower(username) = :value OR
              lower(email) = :value",
-             { value: signin.to_s.downcase.gsub(/\s+/, '')}]).first
+             { value: signin.to_s.downcase.gsub(/\s+/, '') }]).first
   end
 
   has_many :pets, dependent: :destroy

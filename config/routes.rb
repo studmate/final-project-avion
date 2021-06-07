@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'home/about'
   
   resources :pets do
-    resources :matches do
+    resources :matches, only: %i[index show create destroy] do
       collection do
         get 'accept_match'
         get 'decline_match'

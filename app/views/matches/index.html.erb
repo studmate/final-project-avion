@@ -1,0 +1,65 @@
+<h1>Matches</h1>
+<br>
+<p>ID: <%= @pet.id %></p>
+<br>
+<p>Name: <%= @pet.name %></p>
+<br>
+<%= link_to 'back to user', pets_path %>
+<br>
+<div class="flex">
+    <div class="nav" style="flex-grow: 1">
+        <div>
+        <h4>Matches</h4>
+        <% unless @matches.empty? %>
+            <% @matches.each do |match| %>
+            <ul>
+                <li><%= match.name %></li>
+            </ul>
+            <% end %>
+        <% end %>
+        </div>
+        <br>
+        <div>
+        <h4>Sent Request</h4>
+        <% unless @sent_requests.empty? %>
+            <% @sent_requests.each do |sent| %>
+            <ul>
+                <li><%= sent.name %></li>
+            </ul>
+            <% end %>
+        <% end %>
+        </div>
+        <br>
+        <div>
+        <h4>Received Request</h4>
+        <% unless @received_requests.empty? %>
+            <% @received_requests.each do |received| %>
+            <ul>
+                <li><%= received.name %></li>
+                <%= link_to accept_match_pet_matches_path(received) do %>
+                  <button>accept</button>
+                <% end %>
+                <%= link_to decline_match_pet_matches_path(received) do %>
+                  <button>decline</button>
+                <% end %>
+            </ul>
+            <% end %>
+        <% end %>
+        </div>
+    </div>
+    <div class="main" style="flex-grow: 8">
+    <h1>Possible Matches<h1>
+    <% @pets.each do |pet| %>
+        <% if current_user.pets.find(params[:pet_id]).id != pet.id %>
+        <% unless possible_match?(pet) %>
+            <ul>
+              <li><%= pet.name %></li>
+            </ul>
+            <%= link_to pet_matches_path(pet), method: :post do %>
+            <button>Send Request</button>
+            <% end %>
+        <% end %>
+        <% end %>
+    <% end %>
+    </div>
+<div>
