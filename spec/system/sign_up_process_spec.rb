@@ -6,16 +6,13 @@ RSpec.describe 'Sign up process', type: :feature do
 
   it 'should create new user' do
     visit new_user_registration_path
-
     within '#new_user' do
       fill_in 'user_username', with: valid_attributes[:username]
       fill_in 'user_email', with: valid_attributes[:email]
       fill_in 'user_password', with: valid_attributes[:password]
       fill_in 'user_password_confirmation', with: valid_attributes[:password_confirmation]
-
       click_button 'Sign up'
     end
-
     expect(page.current_path).to eq user_registration_path
   end
 end
