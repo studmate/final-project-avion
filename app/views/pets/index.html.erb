@@ -1,34 +1,52 @@
+<%=render 'shared/header'%>
+ <% if flash[:notice] %>
+      <%= render 'layouts/alerts' %>
+    <% end %>
 
-<body class = "bg-blue-200">
-<div class="grid grid-cols-3">
-<%=render 'sidebar'%>
+    <% if flash[:alert] %>
+      <%= render 'layouts/alerts' %>
+    <% end %>
 
-
-<div class = "col-span-2 mt-10">
-<div class =" sm:w-full md:w-10/12">
- <div class = "flex lg:justify-start flex-wrap">
+<body class ="bg-blue-200">
+<div class="flex h-screen bg-blue-200 pb-16">
+  <div class="m-auto pb-14">
+    <h2 class="text-center text-5xl font-extrabold text-white">
+        Select Your Pet
+</h2>
+  <div class ="sm:w-full md:w-10/12 lg:w-full mt-8">
+ <div class = "flex lg:justify-start flex-wrap mx-auto">
  <% @pets.each do |pet| %>
- <div class = "flex-initial mr-3 w-40 mb-3 rounded-xl">
+ <div class = "w-40 lg:mr-3 rounded-xl mx-auto">
       <% if pet.images? %>
   <% pet.images.each_with_index do |img, i| %>
-  <%=image_tag(img.thumb.url, alt:pet.name, :class => "object-fill h-32 w-full opacity-80 rounded-xl") if i==0 %> 
-   <div class = " flex items-center justify-center">
-   <%=link_to pet.name.downcase.capitalize(), pet_path(pet) if i==0%>
+  <%if i == 0%>
+    <%= link_to pet, method: :delete, data: { confirm: 'Remove pet?'}  do %>
+       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute z-50 hover:bg-red-200" fill="red" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    <% end %>
+             <%=image_tag(img.thumb.url, alt:pet.name, :class => "z-0 relative cursor-pointer object-fill h-40 w-full  rounded-xl hover:shadow-2xl")%> 
+ <div class = "text-white text-bold text-lg flex items-center justify-center text-2xl">
+   <%=link_to pet.name.capitalize(), pet_path(pet) if i==0%>
    </div>
+    <%end%>
+   
   <% end %>
  
     </div>
 <% end %>
     <% end %>
-    <div class ="cursor-pointer bg-gray border-4 h-32 w-40 flex items-center justify-center rounded-xl">
+    <div class ="cursor-pointer bg-gray border-4 mr-2  h-40 w-40 flex items-center justify-center rounded-xl">
  <%= link_to new_pet_path do %>
 <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32" fill="none" viewBox="0 0 24 24" stroke="blue">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
 </svg>
-
 <%end%>
  </div>
  </div>
 </div>
+  
+  
+  </div>
 </div>
 </body>
