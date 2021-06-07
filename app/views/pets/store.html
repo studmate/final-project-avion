@@ -1,10 +1,10 @@
-<!-- <div class ="ml-24 cursor-pointer">
+ <div class ="ml-24 cursor-pointer">
     <%= link_to pet, method: :delete, data: { confirm: 'Remove pet?'} do %>
        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="red" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
     </svg>
     <% end %>
-    </div> -->
+    </div> 
 
      <!-- mobile menu button -->
     <!-- <button class="mobile-menu-button p-4 focus:outline-none focus:bg-gray-700">
@@ -37,3 +37,103 @@
 
  <!-- <img class="w-full" src="https://worldvectorlogo.com/logos/tinder-1.svg" alt="Tinder Logo" title="Tinder Logo" />
 </div> -->
+
+<div class="flex items-center">
+<div class =" sm:w-full md:w-10/12">
+ <div class = "flex lg:justify-start flex-wrap">
+ <% @pets.each do |pet| %>
+ <div class = "flex-initial mr-3 w-40 mb-3 rounded-xl">
+      <% if pet.images? %>
+  <% pet.images.each_with_index do |img, i| %>
+  <%=image_tag(img.thumb.url, alt:pet.name, :class => "object-fill h-32 w-full opacity-80 rounded-xl") if i==0 %> 
+   <div class = " flex items-center justify-center">
+   <%=link_to pet.name.downcase.capitalize(), pet_path(pet) if i==0%>
+   </div>
+  <% end %>
+ 
+    </div>
+<% end %>
+    <% end %>
+    <div class ="cursor-pointer bg-gray border-4 h-32 w-40 flex items-center justify-center rounded-xl">
+ <%= link_to new_pet_path do %>
+<svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32" fill="none" viewBox="0 0 24 24" stroke="blue">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+</svg>
+
+<%end%>
+ </div>
+ </div>
+</div>
+</div> -->
+
+    <div class="flex items-center ml-15 w-full h-18 pt-4 ">
+      <div class="bg-white rounded-full relative text-6xl tno">
+        <%=image_tag('close_button')%>
+      </div>
+      <div class="ti rounded-full relative">
+        <i class="fa fa-info hidden" aria-hidden="true"></i>
+      </div>
+      <div class="bg-white rounded-full relative  text-6xl tyes">
+       <%=image_tag('transparent_paw')%>
+      </div>
+    </div>
+
+
+    <!-- <div class="flex items-center ml-15 w-full h-18 pt-4 ">
+      <div class="bg-white rounded-full relative text-6xl tno">
+        <%=image_tag('close_button')%>
+      </div>
+      <div class="ti rounded-full relative">
+        <i class="fa fa-info hidden" aria-hidden="true"></i>
+      </div>
+      <div class="bg-white rounded-full relative  text-6xl tyes">
+       <%=image_tag('transparent_paw')%>
+      </div>
+    </div> -->
+
+    <!-- <div class="tinfo p-4">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer hover:bg-red-300" fill="red" viewBox="0 0 24 24" stroke="currentColor">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+</svg>
+     </div> -->
+
+ <h2 class="text-center text-3xl font-extrabold text-white mb-6 border-b-8 shadow-xl">
+        Select Your Pet
+</h2>
+  <div class ="sm:w-full md:w-10/12 lg:w-full">
+ <div class = "flex lg:justify-start flex-wrap mx-auto">
+ <% @pets.each do |pet| %>
+ <div class = "flex-initial w-32 mb-3 mr-2 ml-7 rounded-xl mx-auto">
+      <% if pet.images? %>
+  <% pet.images.each_with_index do |img, i| %>
+  <%if i == 0%>
+    <%= link_to pet, method: :delete, data: { confirm: 'Remove pet?'}  do %>
+       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute z-50 hover:bg-red-200" fill="red" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    <% end %>
+             <%=image_tag(img.thumb.url, alt:pet.name, :class => "z-0 relative cursor-pointer object-fill h-32 w-full  rounded-xl hover:shadow-2xl")%> 
+
+    <%end%>
+    <div class = "text-white text-bold text-lg flex items-center justify-center ">
+   <%=link_to pet.name.downcase.capitalize(), pet_path(pet) if i==0%>
+   </div>
+  <% end %>
+ 
+    </div>
+<% end %>
+    <% end %>
+    <div class ="cursor-pointer bg-gray border-4 mr-2 ml-7  h-32 w-32 flex items-center justify-center rounded-xl">
+ <%= link_to new_pet_path do %>
+<svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32" fill="none" viewBox="0 0 24 24" stroke="blue">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+</svg>
+<%end%>
+ </div>
+ </div>
+</div>
+  
+  
+  
+  
+
