@@ -33,6 +33,8 @@ gem 'file_validators'
 gem 'delayed_job_active_record'
 # gem for hiding aws s3 API keys
 gem 'figaro'
+# gem for seeding data
+gem 'faker'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -46,6 +48,7 @@ group :development do
 end
 
 group :test do
+  gem 'capybara'
   gem 'rspec-rails'
   gem 'database_rewinder'
   gem 'factory_bot_rails'

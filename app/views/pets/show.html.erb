@@ -49,4 +49,12 @@ data-carousel-options-value='{
   </div>
   </div>
 </body>
+<br>
+<% unless @matches.empty? %>
+      <% @matches.each do |f|%>
+            <%= link_to user_path(f) do %>
+              <%= f.name %>
+            <% end %>
+      <% end %>
+<% end %>
 

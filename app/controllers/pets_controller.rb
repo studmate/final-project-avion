@@ -23,7 +23,7 @@ end
   def create
     @pet = current_user.pets.build(pet_params)
     if @pet.save
-      redirect_to pets_path, notice: "Pet created!"
+      redirect_to pets_path, notice: 'Pet created!'
     else
       render :new, status: :unprocessable_entity
     end

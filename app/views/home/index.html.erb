@@ -3,6 +3,8 @@
 <br>
 <%= link_to 'About', home_about_path %>
 <br>
+<%= link_to 'Update Profile', edit_user_registration_path %>
+<br>
 <% if user_signed_in? %>
   <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
 <% end %>
