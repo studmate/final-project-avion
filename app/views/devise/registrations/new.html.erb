@@ -1,13 +1,16 @@
 <%= render 'shared/header'%>
+
 <body class = "bg-blue-200">
   <h2 class="mt-20 text-center text-3xl font-extrabold text-gray-900 mb-8">
         Register an Account
   </h2>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-<div  class="max-w-md mx-auto md:max-w-2xl">
+<div class="max-w-md mx-auto md:max-w-2xl">
+<div class = 'field text-center'>
+<%= render "devise/shared/error_messages", resource: resource %>
+</div>
   <div class="field text-center">
-    <%= f.text_field :username, autofocus: true, autocomplete: "username", class:"px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12 mb-3" , placeholder:"Username"%>
+    <%= f.text_field :username, autofocus: true, autocomplete: "username", class:"px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12 mb-3 mt-4" , placeholder:"Username"%>
   </div>
   <div class="field text-center">
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12 mb-3" , placeholder:"Email address"%>
