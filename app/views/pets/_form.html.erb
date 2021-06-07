@@ -1,4 +1,48 @@
 
+<style>
+      #menu-toggle:checked + #menu {
+        display: block;
+      }
+  </style>
+
+
+  <header class="lg:px-16 px-6  flex flex-wrap items-center lg:py-0 py-2 text-lg">
+    <div class="flex-1 flex justify-between items-center text-gray-700 hover:text-white font-bold">
+    <%=image_tag("studmate_logo.png", size:"200x200" )%>  
+ 
+  </div> 
+
+   <label for="menu-toggle" class="pointer-cursor lg:hidden block"><svg class="fill-current text-gray-900" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path></svg></label>
+  <input class="hidden" type="checkbox" id="menu-toggle" />
+
+  <div class="hidden lg:flex lg:items-center lg:w-auto w-full" id="menu">
+    <nav>
+    <%if user_signed_in?%>
+      <ul class="lg:flex items-center justify-between text-gray-700 pt-4 lg:pt-0 text-lg">
+        <li><%= link_to "See Pets", pets_path, :class => "hover:text-blue-400 font-bold lg:p-4 py-3 px-0 block " %></li>
+        <li><%= link_to "Edit Profile", edit_user_registration_path, :class => "hover:text-blue-400 font-bold lg:p-4 py-3 px-0 block " %></li>
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => "hover:text-blue-400 font-bold lg:p-4 py-3 px-0 block " %></li>
+      </ul>
+    </nav>
+  </div>
+  <%else%>
+  <ul class="lg:flex items-center justify-between text-gray-700 pt-4 lg:pt-0 text-lg">
+        <li><a class="lg:p-4 py-3 px-0 block  hover:text-blue-400 font-bold" href="#">About Us</a></li>
+        <li><a class="lg:p-4 py-3 px-0 block  hover:text-blue-400 font-bold" href="#">Contact</a></li>
+        <li><%= link_to "Log in", new_user_session_path, :class => "hover:text-blue-400 font-bold lg:p-4 py-3 px-0 block " %></li>
+        <li><%= link_to "Sign up", new_user_registration_path, :class => "hover:text-blue-400 font-bold lg:p-4 py-3 px-0 block " %></li>
+      </ul>
+    </nav>
+  </div>
+  
+<%end%>
+  </header>
+
+<body class = "bg-blue-200">
+<div class ="bg-red-700 max-w-md mx-auto rounded-lg shadow-xl">
+<div class = "text-3xl text-center text-white">
+Add your Pet
+</div>
 <%= form_with(model: pet) do |form| %>
   <% if pet.errors.any? %>
   <ul>
@@ -7,31 +51,57 @@
     <% end %>
   </ul>
   <% end %>
-  <br>
-  <%= form.label :name %>
-  <%= form.text_field :name %>
-  <br>
-  <%= form.label :breed %>
-  <%= form.text_field :breed %>
-  <br>
-  <%= form.label :specie %>
-  <%= form.text_field :specie %>
-  <br>
-  <%= form.label :birthdate %>
-  <%= form.date_field :birthdate %>
-  <br>
-  <%= form.label :age %>
-  <%= form.number_field :age %>
-  <br>
-  <%= form.label :gender, 'Male', value: true %>
-  <%= form.radio_button :gender, true, checked: true, value: true %>
+  <div class = "max-w-md mx-auto md:max-w-2xl">
+  <div class = "field text-center">
+  <%= form.text_field :name, class:"px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12 mb-1 mt-6", placeholder:'name' %>
+  </div>
+  </div>
+    <div class = "max-w-md mx-auto md:max-w-2xl">
+  <div class = "field text-center">
+  <%= form.text_field :breed, class:"px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12 mb-1 mt-6",placeholder:'breed' %>
+  </div>
+  </div>
+    <div class = "max-w-md mx-auto md:max-w-2xl">
+  <div class = "field text-center">
+  <%= form.text_field :specie, class:"px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12 mb-1 mt-6", placeholder:'specie' %>
+  </div>
+  </div>
+    <div class = "max-w-md mx-auto md:max-w-2xl">
+  <div class = "field text-center">
+  <%= form.number_field :age, class:"px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12 mb-3 mt-6", placeholder:'age' %>
+  </div>
+  </div>
+      <div class = "max-w-md mx-auto md:max-w-2xl">
+  <div class = "field text-center">
+  <div class = "text-black text-bold">
+  Select Gender
+  </div>
+<%= form.label :gender, 'Male', value: true %>
+  <%= form.radio_button :gender, true, checked: true, value: true, class:'h-5 w-5 mr-2' %>
   <%= form.label :gender, 'Female', value: false %>
-  <%= form.radio_button :gender, false, value: false %>
-  <br>
+  <%= form.radio_button :gender, false, value: false,  class:'h-5 w-5 bg-red-500'  %>
+  </div>
+  </div>
+    <div class = "max-w-md mx-auto md:max-w-2xl">
+  <div class = "field text-center">
   <%= form.label :vaccinated %>
-  <%= form.check_box :vaccinated %>
-  <br>
-  <%= form.label :images %>
+  <%= form.check_box :vaccinated, class: 'h-5 w-5 text-red-600' %>
+  </div>
+  </div>
+  <div class="flex w-full justify-center bg-grey-lighter">
+    <label class="w-64 flex flex-col items-center px-2 py-3 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue hover:bg-blue hover:text-blue-400 cursor-pointer">
+        <svg class="w-7 h-7" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+        </svg>
+    <span class="mt-2 text-base leading-normal"> Upload Image</span>
+    <%= form.file_field :images, multiple: true, class:'hidden' %>
+   <%= form.hidden_field :images_cache %> 
+    </label>
+</div>
+
+  <div class = "max-w-md mx-auto md:max-w-2xl">
+  <div class = "field text-center">
+
   <% if pet.images? %>
     <% pet.images.each do |img| %>
     <%= image_tag(img.url) %>
@@ -41,9 +111,13 @@
     </label>
     <% end %>
   <% end %>
-  <%= form.file_field :images, multiple: true %>
-  <%= form.hidden_field :images_cache %>
+
   <br>
-  
-  <%= form.submit 'save' %>
+ <button> <%= form.submit 'save', class:'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer mb-6' %> </button>
 <% end %>
+  </div>
+  </div>
+  
+  
+ 
+</body>
