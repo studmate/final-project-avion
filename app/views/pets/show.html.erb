@@ -2,9 +2,7 @@
 <body class = "bg-blue-200">
 <div class="lg:grid grid-cols-2 ">
 <%=render 'sidebar'%>
-
   <div class="flex flex-col justify-start my-auto overflow-auto  scrollbar-hide ">
-  
     <div class="tphoto rounded-lg">
     <!-- Slider main container -->
 <div data-controller="carousel" class="swiper-container h-96 w-full  bg-white rounded-t-lg"
@@ -41,7 +39,7 @@ data-carousel-options-value='{
     </div>
     <span class ="ml-2 text-gray-400">3 km</span>
     <p class = "mt-4" >
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+  
     </p>
  </div>
     
@@ -50,11 +48,3 @@ data-carousel-options-value='{
   </div>
 </body>
 <br>
-<% unless @matches.empty? %>
-      <% @matches.each do |f|%>
-            <%= link_to user_path(f) do %>
-              <%= f.name %>
-            <% end %>
-      <% end %>
-<% end %>
-

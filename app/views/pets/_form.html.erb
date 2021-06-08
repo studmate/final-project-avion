@@ -27,8 +27,6 @@
   </div>
   <%else%>
   <ul class="lg:flex items-center justify-between text-gray-700 pt-4 lg:pt-0 text-lg">
-        <li><a class="lg:p-4 py-3 px-0 block  hover:text-blue-400 font-bold" href="#">About Us</a></li>
-        <li><a class="lg:p-4 py-3 px-0 block  hover:text-blue-400 font-bold" href="#">Contact</a></li>
         <li><%= link_to "Log in", new_user_session_path, :class => "hover:text-blue-400 font-bold lg:p-4 py-3 px-0 block " %></li>
         <li><%= link_to "Sign up", new_user_registration_path, :class => "hover:text-blue-400 font-bold lg:p-4 py-3 px-0 block " %></li>
       </ul>
@@ -61,10 +59,8 @@ Add your Pet
   <%= form.text_field :breed, class:"px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12 mb-1 mt-6",placeholder:'breed' %>
   </div>
   </div>
-    <div class = "max-w-md mx-auto md:max-w-2xl">
-  <div class = "field text-center">
-  <%= form.select :specie,['Dog', 'Cat'], class:"px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12 mb-1 mt-6", placeholder:'specie' %>
-  </div>
+    <div class = "max-w-md mx-auto md:max-w-2xl px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12 mb-1 mt-6">
+  <%= form.select :specie,["dog","cat"],class:"px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12 mb-1 mt-6", placeholder:'specie' %>
   </div>
     <div class = "max-w-md mx-auto md:max-w-2xl">
   <div class = "field text-center">
@@ -101,7 +97,9 @@ Add your Pet
 
   <div class = "max-w-md mx-auto md:max-w-2xl">
   <div class = "field text-center">
+  <br>
 
+  <div class = "w- mb-3 mr-2 ml-7 rounded-xl mx-auto flex items-center object-fill flex-wrap">
   <% if pet.images? %>
     <% pet.images.each do |img| %>
     <%= image_tag(img.url) %>
@@ -111,17 +109,7 @@ Add your Pet
     </label>
     <% end %>
   <% end %>
-<<<<<<< HEAD
-
-=======
-  
-  <% pet.images.each do |image| %>
-    <%= hidden_field :pet, :images, multiple: true, value: image.identifier %>
-  <% end %>
-  <%= form.file_field :images, multiple: true %>
-  <%= form.hidden_field :images_cache %>
->>>>>>> 5e205c5850634b0f5802bb7ac81280e6dac3235a
-  <br>
+  </div>
  <button> <%= form.submit 'save', class:'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer mb-6' %> </button>
 <% end %>
   </div>

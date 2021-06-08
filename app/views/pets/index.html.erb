@@ -1,50 +1,4 @@
-<<<<<<< HEAD
 <%=render 'shared/header'%>
- <% if flash[:notice] %>
-      <%= render 'layouts/alerts' %>
-=======
-<h1>Pets</h1>
-<%= link_to 'Home', home_index_path %>
-<br>
-<%= link_to 'Add Pet', new_pet_path %>
-<br>
-<table>
-  <thead>
-    <th>Name</th> 
-    <th>Breed</th>
-    <th>Specie</th>
-    <th>Birth</th>
-    <th>Age</th>
-    <th>Gender</th>
-    <th>Vaccinated</th>
-    <th>Photos</th>
-    <th colspan="4"></th>
-  </thead>
-  <tbody>
-    <% @pets.each do |pet| %>
-    <tr>
-      <td><%= pet.name %></td>
-      <td><%= pet.breed %></td>
-      <td><%= pet.specie %></td>
-      <td><%= pet.birthdate.strftime("%B %d, %Y") %></td>
-      <td><%= pet.age %></td>
-      <td><%= pet.gender ? 'Male' : 'Female' %></td>
-      <td><%= pet.vaccinated ? 'Yes' : 'No' %></td>
-      <td>
-        <%= pet.images.count %>
-      </td>
-      <td><%= link_to 'Matches', pet_matches_path(pet) %></td>
-      <td><%= link_to 'Show', pet_path(pet) %></td>
-      <td><%= link_to 'Edit', edit_pet_path(pet) %></td>
-      <td><%= link_to 'Delete', pet, method: :delete, data: { confirm: 'Remove pet?'} %></td>
-    </tr>
->>>>>>> 5e205c5850634b0f5802bb7ac81280e6dac3235a
-    <% end %>
-
-    <% if flash[:alert] %>
-      <%= render 'layouts/alerts' %>
-    <% end %>
-
 <body class ="bg-blue-200">
 <div class="flex h-screen bg-blue-200 pb-16">
   <div class="m-auto pb-14">
@@ -54,7 +8,7 @@
   <div class ="sm:w-full md:w-10/12 lg:w-full mt-8">
  <div class = "flex lg:justify-start flex-wrap mx-auto">
  <% @pets.each do |pet| %>
- <div class = "w-40 lg:mr-3 rounded-xl mx-auto">
+ <div class = "w-40 mb-3 mr-2 ml-7 rounded-xl mx-auto">
       <% if pet.images? %>
   <% pet.images.each_with_index do |img, i| %>
   <%if i == 0%>
@@ -74,7 +28,7 @@
     </div>
 <% end %>
     <% end %>
-    <div class ="cursor-pointer bg-gray border-4 mr-2  h-40 w-40 flex items-center justify-center rounded-xl">
+    <div class ="cursor-pointer bg-gray border-4 mr-2 ml-7  h-40 w-40 flex items-center justify-center rounded-xl">
  <%= link_to new_pet_path do %>
 <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32" fill="none" viewBox="0 0 24 24" stroke="blue">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
