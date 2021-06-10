@@ -1,10 +1,9 @@
-<div class="min-h-screen md:flex ">
+<div class="md:flex flex-col md:flex-row md:min-h-screen w-full fixed ">
   <!-- sidebar -->
-  <div class="sidebar lg:w-6/12 bg-white shadow-2xl text-blue-100 w-8/12  absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
- <a href="#" class="block p-6  text-blue font-white bg-gradient-to-r from-green-400 to-blue-500 text-2xl"><%=@pet.name.capitalize%></a>
+  <div class="px-24 ">
+ <div  class=" w-full text-blue font-white bg-gradient-to-r from-green-400 to-blue-500 text-2xl"><%=@pet.name.capitalize%></div>
   <div class="block p-3 text-black font-white bg-white shadow-2xl ">
    <a href="#" class=" ml-2 mr-12 hover:underline">Matches</a>
-    <a href="#" class="hover:underline ">Messages</a>
   </div>
 
     <nav>

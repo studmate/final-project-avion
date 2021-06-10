@@ -2,8 +2,8 @@
 <body class ="bg-blue-200">
 <div class="flex h-screen bg-blue-200 pb-16">
   <div class="m-auto pb-14">
-    <h2 class="text-center text-5xl font-extrabold text-white">
-        Select Your Pet
+    <h2 class="text-center text-5xl font-extrabold text-white font-serif">
+        Add Your Pet
 </h2>
   <div class ="sm:w-full md:w-10/12 lg:w-full mt-8">
  <div class = "flex lg:justify-start flex-wrap mx-auto">
@@ -28,7 +28,8 @@
     </div>
 <% end %>
     <% end %>
-    <div class ="cursor-pointer bg-gray border-4 mr-2 ml-7  h-40 w-40 flex items-center justify-center rounded-xl">
+    <div class ="cursor-pointer bg-gray border-4 h-40 w-40 flex items-center justify-center rounded-xl hoverL">
+    
  <%= link_to new_pet_path do %>
 <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32" fill="none" viewBox="0 0 24 24" stroke="blue">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -37,8 +38,6 @@
  </div>
  </div>
 </div>
-  
-  
   </div>
 </div>
 </body>
