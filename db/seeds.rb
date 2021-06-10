@@ -15,7 +15,7 @@
       age: Faker::Number.within(range: 1..15),
       gender: Faker::Creature::Dog.gender,
       vaccinated: 'Yes',
-      images: [ open("https://studmate.s3.ap-southeast-1.amazonaws.com/uploads/faker/images/dog/dog-flickr-DominikQN.jpg") ]
+      images: [ URI.open("https://studmate.s3.ap-southeast-1.amazonaws.com/uploads/faker/images/dog/dog-flickr-DominikQN.jpg") ]
     )  
   end
   users_two = User.create!(
@@ -34,7 +34,7 @@
       age: Faker::Number.within(range: 1..15),
       gender: Faker::Creature::Dog.gender,
       vaccinated: 'Yes',
-      images: [ open("https://studmate.s3.ap-southeast-1.amazonaws.com/uploads/faker/images/dog/https+_cdn.petcarerx.com_LPPE_images_articlethumbs_Why-Dog-Losing-Hair-Small.jpg") ]
+      images: [ URI.open("https://studmate.s3.ap-southeast-1.amazonaws.com/uploads/faker/images/dog/https+_cdn.petcarerx.com_LPPE_images_articlethumbs_Why-Dog-Losing-Hair-Small.jpg") ]
     )  
   end
   users_three = User.create!(
@@ -53,7 +53,7 @@
       age: Faker::Number.within(range: 1..15),
       gender: 'Female',
       vaccinated: 'Yes',
-      images: [ open("https://s3.console.aws.amazon.com/s3/object/studmate?prefix=uploads/faker/images/cat/93347270_cat-1151519_1280.jpg&region=ap-southeast-1")],
+      images: [ URI.open("https://s3.console.aws.amazon.com/s3/object/studmate?prefix=uploads/faker/images/cat/93347270_cat-1151519_1280.jpg&region=ap-southeast-1")],
     )  
   end
   users_four = User.create!(
@@ -72,7 +72,7 @@
       age: Faker::Number.within(range: 1..15),
       gender: 'Male',
       vaccinated: 'No',
-      images: [ open("https://studmate.s3.ap-southeast-1.amazonaws.com/uploads/faker/images/cat/why-cats-are-best-pets-1559241235.jpg")]
+      images: [ URI.open("https://studmate.s3.ap-southeast-1.amazonaws.com/uploads/faker/images/cat/why-cats-are-best-pets-1559241235.jpg")]
     )  
   end
 end
