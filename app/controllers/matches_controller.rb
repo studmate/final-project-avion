@@ -1,6 +1,6 @@
 class MatchesController < ApplicationController
   include ApplicationHelper
-    
+
   def index
     @pets = Pet.all
     @pet = current_user.pets.find(params[:pet_id]) # current pet
@@ -67,4 +67,6 @@ class MatchesController < ApplicationController
 end
 
 # users = pets.map(&:user)
+# <<<<<<< HEAD
+# pets.map { |pet| pet.user }
 # pets.map { |pet| pet.user }

@@ -1,7 +1,9 @@
 class PetsController < ApplicationController
+
   before_action :set_pet, only: %i[ show edit update destroy ]
   skip_before_action :authenticate_user!
   before_action :check_auth
+
 
 
   def check_auth

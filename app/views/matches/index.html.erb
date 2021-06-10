@@ -13,11 +13,14 @@
   <br/>
   </div>
 </div>
- <% @pets.each_with_index do |pet| %>
-  <% if current_user.pets.find(params[:pet_id]).id != pet.id %>
- <% unless possible_match?(pet) %>
+
+<%= flash[:danger] %>
+  <% @pets.map do |pet| %>
+        <% if current_user.pets.find(params[:pet_id]).id != pet.id && current_user.id != pet.user_id %>
+          <% unless possible_match?(pet) %>
+          
  <div class = "relative ">
-  <div class="absolute bg-white top-1/2 left-1/2">
+  <div class="absolute bg-white top-1/2 left-1/2 mt-4">
     <div class="tphoto rounded-lg">
     <!-- Slider main container -->
 <div data-controller="carousel" class="swiper-container h-96 w-full bg-white rounded-t-lg"
@@ -51,12 +54,34 @@ data-carousel-options-value='{
     <span class ="ml-2 text-gray-400 font-bold user-location text-lg"  >
     3 km away
     </span>
+     <%= link_to pet_match_pet_matches_path(:id => pet.id) do %>
+     <%= flash[:success] %>
+     <div class="flex items-center justify-center w-full h-full cursor-pointer ">
+      <div class="bg-white relative text-6xl  text-center">
+       <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 " fill="red" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+</svg>
+ <% end %>
+      </div>
+      <div class="ti rounded-full relative hidden">
+        <i class="fa fa-info" aria-hidden="true"></i>
+      </div>
+      <div class="bg-white relative text-6xl">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+</svg>
+      </div>
+    </div>
+    
+    
+  </div>
+   
     <div  data-controller="toggle">
     <div class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer text-center" data-action ="click->toggle#toggle" >
-View Profile
+        Read More
 </div>
-<div class = "hidden "data-toggle-target= "toggleable" >
-    <p class = "text-center text-justify " > <br/>
+<div class = "hidden bg-white"data-toggle-target= "toggleable" >
+    <p class = "text-center text-justify" > <br/>
       <%if @pet.vaccinated == true%>
       <div class ="ml-2 text-gray-400 text-center font-bold">Hello, I am Vaccinated! 😄</div>
       <%else%>
@@ -73,7 +98,7 @@ View Profile
       <div class = "text-gray-400 text-center font-bold">
      My Owner is <%=pet.user.username%> 
     </div>
-      <div class = "text-gray-400 text-center font-bold">
+      <div class = "text-gray-400 text-center font-bold pb-5">
      Contact my owner at <%=pet.user.email%> 
     </div>
     <div>
@@ -89,5 +114,5 @@ View Profile
         <% end %>
         
 </body>
-<br>
+
 
