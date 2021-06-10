@@ -1,11 +1,26 @@
 
+<body class = "bg-blue-200">
+<div class="min-h-screen md:flex fixed flex-wrap">
+  <!-- sidebar -->
+  <div class="sidebar lg:w-full bg-white shadow-2xl text-blue-100 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
+ <div  class="block p-6 mr-12 text-blue font-white bg-gradient-to-r from-green-400 to-blue-500 text-md font-serif"><%=@pet.name.capitalize%> ||
+ <span class = "float-right hover:text-red-400"><%=link_to "back to Profile", @pet%></span>
+ </div>
+  <div class="text-black font-white bg-white shadow-2xl ">
+        <%= link_to @pet.name.capitalize + " " "matches", pet_matches_path(@pet), :class => "hover:text-blue-400 font-bold lg:p-3 py-2 px-0 block text-center text-3xl" %>
+  </div>
+  <br/>
+  <br/>
+  </div>
+</div>
  <% @pets.each_with_index do |pet| %>
   <% if current_user.pets.find(params[:pet_id]).id != pet.id %>
  <% unless possible_match?(pet) %>
-<div class = "relative mx-auto">
-    <div class="tphoto rounded-lg absolute top-0 left-0" data-id = "<%=pet.id%>">
+ <div class = "relative ">
+  <div class="absolute bg-white absolute top-1/2 left-1/2 top-20">
+    <div class="tphoto rounded-lg">
     <!-- Slider main container -->
-<div data-controller="carousel" class="swiper-container h-96 w-full  bg-white rounded-t-lg  overflow-auto  scrollbar-hide"
+<div data-controller="carousel" class="swiper-container h-96 w-full bg-white rounded-t-lg"
 data-carousel-options-value='{
     "pagination": { "el": ".swiper-pagination", 
                     "dynamicBullets": "true" },
@@ -20,52 +35,57 @@ data-carousel-options-value='{
 
   <!-- Additional required wrapper -->
   <div class="swiper-wrapper">
-
       <% if pet.images? %>
   <% pet.images.each do |img| %>
     <%=image_tag(img.thumb.url, alt: "Image",  :class => "object-fill rounded-lg rounded-b-none swiper-slide") %>
-              <% end %>
+  <% end %>
 <% end %>
-</div>
- 
-  
+  </div>
 </div>
 <div class = "bg-white border rounded-b-lg  rounded-t-none  ">
-<div class = "flex-row ">
-<div class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer text-center float-right">
-<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-</svg>
-<div>
-</div>
-</div>
+<div class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer text-center">
+  <%=link_to "View Profile", edit_pet_path(pet)%>
 </div>
       <div class="flex justify-between">
         <div class="text-xl float-left ml-2"><%=pet.name%> 
         <span class="font-light ml-5"><%=pet.age%></span>
       </div> 
     </div>
-    <span class ="ml-2 text-gray-400">3 km</span>
-    <p class = "mt-4" >
+    <span class ="ml-2 text-gray-400 font-bold user-location"  >
+    </span>
+    <p class = "text-center text-justify" > <br/>
+      <%if @pet.vaccinated == true%>
+      <div class ="ml-2 text-gray-400 text-center font-bold">Hello, I am Vaccinated! 😄</div>
+      <%else%>
+      <div class ="ml-2 text-gray-400 text-center font-bold">Hello, I am not yet Vaccinated 😥</div>
+    <%end%> 
+    <div class = "text-gray-400 text-center font-bold">
+      I came from the <%=pet.breed%> Family!
+    </div>
+    <br/>
+    <div class = "text-2xl text-center">About me</div>
+    <p class ="text-center">
+    <%=pet.description%>
+    </p>
+      <div class = "text-gray-400 text-center font-bold">
+     My Owner is <%=pet.user.username%> 
+    </div>
+      <div class = "text-gray-400 text-center font-bold">
+     Contact my owner at <%=pet.user.email%> 
+    </div>
+    <div>
+    </div>
     </p>
  </div>
-    
     </div>
   </div>
-</div>
-    <% end %>
-        <% end %>
-        <% end %>
 
   
-
+  <% end %>
+        <% end %>
+        <% end %>
+        
 </body>
 <br>
-
-
-
-
-
-
 
 
