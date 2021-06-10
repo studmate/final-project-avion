@@ -62,6 +62,7 @@ end
                                   :remove_images,
                                   :images_cache,
                                   :remote_images_url,
-                                  :user_id)
+                                  :user_id,
+                                  :description)
     end
 end
