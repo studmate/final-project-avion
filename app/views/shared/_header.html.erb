@@ -7,7 +7,7 @@
 
   <header class="lg:px-16 px-6  flex flex-wrap items-center lg:py-0 py-2 text-lg">
     <div class="flex-1 flex justify-between items-center text-gray-700 hover:text-white font-bold">
-    <%=image_tag("studmate_logo.png", size:"200x200" )%>  
+    <%=link_to image_tag("studmate_logo.png", size:"200x200"),root_path %>  
  
   </div> 
 
@@ -18,15 +18,15 @@
     <nav>
     <%if user_signed_in?%>
       <ul class="lg:flex items-center justify-between text-gray-700 pt-4 lg:pt-0 text-lg">
-        <li><%= link_to "Edit Profile", edit_user_registration_path, :class => "hover:text-blue-400 font-bold lg:p-4 py-3 px-0 block " %></li>
-        <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => "hover:text-blue-400 font-bold lg:p-4 py-3 px-0 block " %></li>
+        <li><%= link_to current_user.username.capitalize(), edit_user_registration_path, :class => "hover:text-blue-400 font-bold lg:p-4 py-3 px-0 block font-serif" %></li>
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => "hover:text-blue-400 font-bold lg:p-4 py-3 px-0 block font-serif " %></li>
       </ul>
     </nav>
   </div>
   <%else%>
   <ul class="lg:flex items-center justify-between text-gray-700 pt-4 lg:pt-0 text-lg">
-        <li><%= link_to "Log in", new_user_session_path, :class => "hover:text-blue-400 font-bold lg:p-4 py-3 px-0 block " %></li>
-        <li><%= link_to "Sign up", new_user_registration_path, :class => "hover:text-blue-400 font-bold lg:p-4 py-3 px-0 block " %></li>
+        <li><%= link_to "Log in", new_user_session_path, :class => "hover:text-blue-400 font-bold lg:p-4 py-3 px-0 block font-serif" %></li>
+        <li><%= link_to "Sign up", new_user_registration_path, :class => "hover:text-blue-400 font-bold lg:p-4 py-3 px-0 block font-serif " %></li>
       </ul>
     </nav>
   </div>
