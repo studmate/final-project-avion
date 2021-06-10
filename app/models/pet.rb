@@ -8,8 +8,8 @@ class Pet < ApplicationRecord
   has_many :match_sent, class_name: 'Match', foreign_key: 'sent_by_id', inverse_of: 'sent_by', dependent: :destroy
   has_many :match_request, class_name: 'Match', foreign_key: 'sent_to_id', inverse_of: 'sent_to', dependent: :destroy
   
-  has_many :matches, -> { merge(Match.matched) }, through: :match_sent, source: :sent_to
-  has_many :sent_requests, -> { merge(Match.not_matched) }, through: :match_sent, source: :sent_to
+  has_many :pet_matches,       -> { merge(Match.matched) },     through: :match_sent,    source: :sent_to
+  has_many :sent_requests,     -> { merge(Match.not_matched) }, through: :match_sent,    source: :sent_to
   has_many :received_requests, -> { merge(Match.not_matched) }, through: :match_request, source: :sent_by
 
   validates :name, :breed, :specie, :birthdate, :age, presence: true
