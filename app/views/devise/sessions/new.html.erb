@@ -7,9 +7,8 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <div  class="max-w-md mx-auto md:max-w-2xl">
   <div class="field text-center">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12 mb-3 mt-6" , placeholder:"Email address"%>
+  <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12 mb-3 mt-6" , placeholder:"Email address"%>
   </div>
-
   <div class="field text-center">
     <%= f.password_field :password, autocomplete: "current-password",class:" mb-4 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12", placeholder:"Password" %>
   </div>
