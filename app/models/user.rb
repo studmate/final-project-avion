@@ -1,4 +1,15 @@
 class User < ApplicationRecord
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+
+  def address
+      [city,country].compact.join(",")
+  end
+
+  def address_changed?
+    city_changed?||country_changed?
+  end
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

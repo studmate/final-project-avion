@@ -134,6 +134,7 @@ GEM
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
     formatador (0.2.5)
+    geocoder (1.6.7)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     hashdiff (1.0.1)
@@ -326,6 +327,7 @@ DEPENDENCIES
   figaro
   file_validators
   fog-aws
+  geocoder (~> 1.6, >= 1.6.7)
   jbuilder (~> 2.7)
   listen (~> 3.3)
   mini_magick

@@ -35,7 +35,7 @@ gem 'delayed_job_active_record'
 gem 'figaro'
 # gem for seeding data
 gem 'faker'
-
+gem 'geocoder', '~> 1.6', '>= 1.6.7'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end

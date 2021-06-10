@@ -7,7 +7,7 @@
  <span class = "float-right hover:text-red-400"><%=link_to "back to Profile", @pet%></span>
  </div>
   <div class="text-black font-white bg-white shadow-2xl ">
-        <%= link_to @pet.name.capitalize + " " "matches", pet_matches_path(@pet), :class => "hover:text-blue-400 font-bold lg:p-3 py-2 px-0 block text-center text-3xl" %>
+        <%= link_to @pet.name.capitalize + " " "Matches", pet_matches_path(@pet), :class => "hover:text-blue-400 font-bold lg:p-3 py-2 px-0 block text-center text-3xl" %>
   </div>
   <br/>
   <br/>
@@ -17,7 +17,7 @@
   <% if current_user.pets.find(params[:pet_id]).id != pet.id %>
  <% unless possible_match?(pet) %>
  <div class = "relative ">
-  <div class="absolute bg-white absolute top-1/2 left-1/2 top-20">
+  <div class="absolute bg-white top-1/2 left-1/2">
     <div class="tphoto rounded-lg">
     <!-- Slider main container -->
 <div data-controller="carousel" class="swiper-container h-96 w-full bg-white rounded-t-lg"
@@ -42,18 +42,21 @@ data-carousel-options-value='{
 <% end %>
   </div>
 </div>
-<div class = "bg-white border rounded-b-lg  rounded-t-none  ">
-<div class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer text-center">
-  <%=link_to "View Profile", edit_pet_path(pet)%>
-</div>
+<div class = "bg-white border rounded-b-lg rounded-t-none">
       <div class="flex justify-between">
-        <div class="text-xl float-left ml-2"><%=pet.name%> 
-        <span class="font-light ml-5"><%=pet.age%></span>
+        <div class="text-xl float-left ml-2"><%=pet.name.capitalize()%> 
+        <span class="font-light ml-4"><%=pet.age%></span>
       </div> 
     </div>
-    <span class ="ml-2 text-gray-400 font-bold user-location"  >
+    <span class ="ml-2 text-gray-400 font-bold user-location text-lg"  >
+    3 km away
     </span>
-    <p class = "text-center text-justify" > <br/>
+    <div  data-controller="toggle">
+    <div class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer text-center" data-action ="click->toggle#toggle" >
+View Profile
+</div>
+<div class = "hidden "data-toggle-target= "toggleable" >
+    <p class = "text-center text-justify " > <br/>
       <%if @pet.vaccinated == true%>
       <div class ="ml-2 text-gray-400 text-center font-bold">Hello, I am Vaccinated! 😄</div>
       <%else%>
@@ -62,7 +65,7 @@ data-carousel-options-value='{
     <div class = "text-gray-400 text-center font-bold">
       I came from the <%=pet.breed%> Family!
     </div>
-    <br/>
+  
     <div class = "text-2xl text-center">About me</div>
     <p class ="text-center">
     <%=pet.description%>
@@ -76,16 +79,15 @@ data-carousel-options-value='{
     <div>
     </div>
     </p>
+    </div>
  </div>
     </div>
+    </div>
   </div>
-
-  
   <% end %>
         <% end %>
         <% end %>
         
 </body>
 <br>
-
 

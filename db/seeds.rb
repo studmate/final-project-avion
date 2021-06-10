@@ -3,7 +3,9 @@
     username: Faker::Internet.username,
     email: Faker::Internet.email,
     password: 'password',
-    password_confirmation: 'password' 
+    password_confirmation: 'password', 
+    city: 'Manila',
+    country: 'Philippines'
   )
   2.times do
     users.pets.create(
@@ -16,5 +18,9 @@
       vaccinated: 'Yes',
       images: [],
     )  
-  end  
+end  
 end
+
+
+
+
