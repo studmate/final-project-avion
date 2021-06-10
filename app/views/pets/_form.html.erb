@@ -3,7 +3,7 @@
       #menu-toggle:checked + #menu {
         display: block;
       }
-  </style>
+</style>
 
 
   <header class="lg:px-16 px-6  flex flex-wrap items-center lg:py-0 py-2 text-lg">
@@ -57,6 +57,11 @@ Add your Pet
     <div class = "max-w-md mx-auto md:max-w-2xl">
   <div class = "field text-center">
   <%= form.text_field :breed, class:"px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12 mb-1 mt-6",placeholder:'breed' %>
+  </div>
+  </div>
+   <div class = "max-w-md mx-auto md:max-w-2xl">
+  <div class = "field text-center">
+  <%= form.text_area :description,size: "30x10", class:" placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12 mb-1 mt-6 ", placeholder:'description' %>
   </div>
   </div>
     <div class = "max-w-md mx-auto md:max-w-2xl px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12 mb-1 mt-6">
