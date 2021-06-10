@@ -16,8 +16,6 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12 mb-3" , placeholder:"Email address"%>
   </div>
   <div class="field text-center">
-    <% if @minimum_password_length %>
-    <% end %>
     <%= f.password_field :password, autocomplete: "new-password",class:" mb-4 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-8/12", placeholder:"Password" %>
   </div>
   <div class="field text-center">
