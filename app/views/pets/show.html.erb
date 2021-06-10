@@ -1,11 +1,39 @@
 
 <body class = "bg-blue-200">
-<div class="lg:grid grid-cols-2 ">
-<%=render 'sidebar'%>
-  <div class="flex flex-col justify-start my-auto overflow-auto  scrollbar-hide ">
+<div class="min-h-screen md:flex fixed flex-wrap">
+  <!-- sidebar -->
+  <div class="sidebar lg:w-full bg-white shadow-2xl text-blue-100 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
+ <div  class="block p-6 mr-12 text-blue font-white bg-gradient-to-r from-green-400 to-blue-500 text-lg font-serif"><%=@pet.name.capitalize%> ||
+       <span class = " hover:text-red-400"><%=link_to "See All Pets", pets_path%></span></div>
+  <div class="text-black font-white bg-white shadow-2xl ">
+        <%= link_to "Start Matching!", pet_matches_path(@pet), :class => "hover:text-blue-400 font-bold lg:p-3 py-2 px-0 block text-center text-3xl" %>
+  </div>
+  <br/>
+  <br/>
+  <div class="grid grid-cols-1 divide-y divide-yellow-500">
+  <div class = "text-gray-400 text-lg">
+Account Settings:
+</div>
+  <div class = "text-gray-600 text-md m-2">
+    Username: <span class = "float-right"> <%=current_user.username%> </span>
+    </div>
+    <div class = "text-gray-600 text-md m-2">
+    Email:  <span class = "float-right"> <%=current_user.email%>
+   </div>
+   <div class = "text-gray-600 text-md m-2">
+    Location:  <span class = "float-right"> <%=current_user.email%>
+   </div>
+   </div>
+   <div class = "text-center mt-8">
+   <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => "bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-2 px-12 rounded w-10/12 " %>
+</div>
+  </div>
+</div>
+ <div class = "relative ">
+  <div class="absolute bg-white absolute top-1/2 left-1/2 top-20 overflow-auto scrollbar-hide">
     <div class="tphoto rounded-lg">
     <!-- Slider main container -->
-<div data-controller="carousel" class="swiper-container h-96 w-full  bg-white rounded-t-lg"
+<div data-controller="carousel" class="swiper-container h-96 w-full bg-white rounded-t-lg "
 data-carousel-options-value='{
     "pagination": { "el": ".swiper-pagination", 
                     "dynamicBullets": "true" },
@@ -26,25 +54,42 @@ data-carousel-options-value='{
   <% end %>
 <% end %>
   </div>
-  
 </div>
 <div class = "bg-white border rounded-b-lg  rounded-t-none  ">
 <div class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer text-center">
-  <%=link_to "Edit Pet Profile", edit_pet_path(@pet)%>
+  <%=link_to "Edit Profile", edit_pet_path(@pet)%>
 </div>
       <div class="flex justify-between">
         <div class="text-xl float-left ml-2"><%=@pet.name%> 
         <span class="font-light ml-5"><%=@pet.age%></span>
       </div> 
     </div>
-    <span class ="ml-2 text-gray-400">3 km</span>
-    <p class = "mt-4" >
-  
+    <span class ="ml-2 text-gray-400 font-bold user-location"  >
+    </span>
+    <p class = "text-center text-justify" > <br/>
+      <%if @pet.vaccinated == true%>
+      <div class ="ml-2 text-gray-400 text-center font-bold">Hello, I am Vaccinated! 😄</div>
+      <%else%>
+      <div class ="ml-2 text-gray-400 text-center font-bold">Hello, I am not yet Vaccinated 😥</div>
+    <%end%> 
+    <div class = "text-gray-400 text-center font-bold">
+      I came from the <%=@pet.breed%> Family!
+    </div>
+    <br/>
+    
+    <div class = "text-2xl text-center">About me</div>
+    <p class ="text-center">
+    <%=@pet.description%>
+    </p>
+    <div>
+    </div>
     </p>
  </div>
-    
     </div>
   </div>
-  </div>
+
+  
 </body>
-<br>
+
+
+
