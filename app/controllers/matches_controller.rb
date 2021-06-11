@@ -38,7 +38,7 @@ class MatchesController < ApplicationController
     return unless @match
 
     @match.status = true
-    if @match.save
+  if @match.save
       flash[:success] = 'Request Accepted!'
       @match2 = @pet.match_sent.build(sent_to_id: params[:id], status: true)
       @match2.save

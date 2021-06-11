@@ -9,9 +9,20 @@
   <div class="text-black font-white bg-white shadow-2xl ">
         <%= link_to "Requests", pet_matches_path(@pet), :class => "hover:text-blue-400 font-bold lg:p-3 py-2 px-0 block text-center text-3xl" %>
   </div>
-<div>
+  <br/>
+  <br/>
+<div class = "flex-wrap">
 
-
+  <% unless @received_requests.empty? %>
+            <% @received_requests.map do |received| %>
+            <ul>
+                <li><%= received.name %></li>
+                <%= link_to pet_matches_path(@pet) do %>
+                  <button>accept</button>
+                <% end %>
+            </ul>
+            <% end %>
+        <% end %>
 </div>
   </div>
 </div>
