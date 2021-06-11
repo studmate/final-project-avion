@@ -7,18 +7,17 @@
  <span class = "float-right hover:text-red-400"><%=link_to "back to Profile", @pet%></span>
  </div>
   <div class="text-black font-white bg-white shadow-2xl ">
-        <%= link_to @pet.name.capitalize + " " "Matches", pet_matches_path(@pet), :class => "hover:text-blue-400 font-bold lg:p-3 py-2 px-0 block text-center text-3xl" %>
+        <%= link_to "Likes", pet_matches_path(@pet), :class => "hover:text-blue-400 font-bold lg:p-3 py-2 px-0 block text-center text-3xl" %>
+        <%= link_to "Requests", pet_matches_path(@pet), :class => "hover:text-blue-400 font-bold lg:p-3 py-2 px-0 block text-center text-3xl" %>
   </div>
   <br/>
   <br/>
   </div>
 </div>
-
 <%= flash[:danger] %>
   <% @pets.map do |pet| %>
         <% if current_user.pets.find(params[:pet_id]).id != pet.id && current_user.id != pet.user_id %>
           <% unless possible_match?(pet) %>
-          
  <div class = "relative ">
   <div class="absolute bg-white top-1/2 left-1/2 mt-4">
     <div class="tphoto rounded-lg">
@@ -52,7 +51,7 @@ data-carousel-options-value='{
       </div> 
     </div>
     <span class ="ml-2 text-gray-400 font-bold user-location text-lg"  >
-    3 km away
+
     </span>
      <%= link_to pet_match_pet_matches_path(:id => pet.id) do %>
      <%= flash[:success] %>
@@ -72,10 +71,7 @@ data-carousel-options-value='{
 </svg>
       </div>
     </div>
-    
-    
   </div>
-   
     <div  data-controller="toggle">
     <div class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer text-center" data-action ="click->toggle#toggle" >
         Read More

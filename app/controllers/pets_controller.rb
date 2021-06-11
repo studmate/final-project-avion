@@ -1,10 +1,7 @@
 class PetsController < ApplicationController
-
   before_action :set_pet, only: %i[ show edit update destroy ]
   skip_before_action :authenticate_user!
   before_action :check_auth
-
-
 
   def check_auth
     unless user_signed_in?
@@ -17,8 +14,8 @@ def index
 end
 
 def show
-  @country = request.location.country
-  @city = request.location.city
+  @ctry = request.location.country
+  @ct = request.location.city
 end
 
 def new
