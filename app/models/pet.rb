@@ -12,6 +12,6 @@ class Pet < ApplicationRecord
   has_many :sent_requests,     -> { merge(Match.not_matched) }, through: :match_sent,    source: :sent_to
   has_many :received_requests, -> { merge(Match.not_matched) }, through: :match_request, source: :sent_by
 
-  validates :name, :breed, :specie, :age, presence: true
+  validates :name, :breed, :specie, :description, :age, presence: true
   validates :images, file_size: { less_than: 1.megabytes }
 end
