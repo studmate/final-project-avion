@@ -14,8 +14,10 @@ def index
 end
 
 def show
+  if Rails.env.production?
   @ctry = request.location.country
   @ct = request.location.city
+end
 end
 
 def new
