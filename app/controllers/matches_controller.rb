@@ -7,6 +7,10 @@ class MatchesController < ApplicationController
     @pet_matches = @pet.pet_matches
     @sent_requests = @pet.sent_requests
     @received_requests = @pet.received_requests
+    if Rails.env.production?
+      @ctry = request.location.country
+      @ct = request.location.city
+    end
   end
 
 
