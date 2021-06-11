@@ -9,9 +9,6 @@ class MatchesController < ApplicationController
     @received_requests = @pet.received_requests
   end
 
-  # def show
-  #   @pet = Pet.find(params[:pet_id])
-  # end
 
   def pet_match
     return if Pet.find(params[:pet_id]).id == params[:id]
@@ -26,11 +23,6 @@ class MatchesController < ApplicationController
     end
     redirect_back(fallback_location: root_path)
   end
-
-  # def destroy
-  #   @match.destroy
-  #   redirect_to pet_matches_path(@pet), notice: 'Match deleted!'
-  # end
 
   def accept_match
     @pet = Pet.find(params[:pet_id])
@@ -58,15 +50,5 @@ class MatchesController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  # private
-
-  # def match_params
-  #   params.require(:match).permit(:sent_by_id, :sent_to_id, :status)
-  # end
-
 end
 
-# users = pets.map(&:user)
-# <<<<<<< HEAD
-# pets.map { |pet| pet.user }
-# pets.map { |pet| pet.user }

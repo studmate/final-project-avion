@@ -15,4 +15,5 @@ module ApplicationHelper
     return true if request_sent == request_received && request_sent == true
     return false if request_sent == request_received && request_sent == false
   end
+  
 end

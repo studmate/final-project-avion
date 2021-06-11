@@ -11,23 +11,18 @@
   </div>
   <br/>
   <br/>
-<div class = "flex-wrap">
-
+<div class = "flex ml-8 text-center text-black text-3xl">
   <% unless @received_requests.empty? %>
             <% @received_requests.map do |received| %>
-            <ul>
-                <li><%= received.name %></li>
-                <%= link_to pet_matches_path(@pet) do %>
-                  <button>accept</button>
-                <% end %>
-            </ul>
+                <div class= "flex items-center text-center">
+                <%= received.name.capitalize %></div>
             <% end %>
         <% end %>
 </div>
   </div>
 </div>
 <%= flash[:danger] %>
-  <% @pets.map do |pet| %>
+    <% @pets.map do |pet| %>
         <% if current_user.pets.find(params[:pet_id]).id != pet.id && current_user.id != pet.user_id %>
           <% unless possible_match?(pet) %>
  <div class = "relative"  data-controller="toggle">
@@ -92,7 +87,7 @@ data-carousel-options-value='{
       <div class ="ml-2 text-gray-400 text-center font-bold">Hello, I am Vaccinated! 😄</div>
       <%else%>
       <div class ="ml-2 text-gray-400 text-center font-bold">Hello, I am not yet Vaccinated 😥</div>
-    <%end%> 
+      <%end%> 
     <div class = "text-gray-400 text-center font-bold">
       I came from the <%=pet.breed%> Family!
     </div>
@@ -115,9 +110,9 @@ data-carousel-options-value='{
     </div>
     </div>
   </div>
-  <% end %>
-        <% end %>
-        <% end %>
+    <% end %>
+    <% end %>
+<% end %>
         
 </body>
 
