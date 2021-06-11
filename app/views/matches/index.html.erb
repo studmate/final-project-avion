@@ -15,7 +15,7 @@
 </div>
 
 <%= flash[:danger] %>
-  <% @pets.map do |pet| %>
+    <% @pets.map do |pet| %>
         <% if current_user.pets.find(params[:pet_id]).id != pet.id && current_user.id != pet.user_id %>
           <% unless possible_match?(pet) %>
           
@@ -86,7 +86,7 @@ data-carousel-options-value='{
       <div class ="ml-2 text-gray-400 text-center font-bold">Hello, I am Vaccinated! 😄</div>
       <%else%>
       <div class ="ml-2 text-gray-400 text-center font-bold">Hello, I am not yet Vaccinated 😥</div>
-    <%end%> 
+      <%end%> 
     <div class = "text-gray-400 text-center font-bold">
       I came from the <%=pet.breed%> Family!
     </div>
@@ -109,9 +109,9 @@ data-carousel-options-value='{
     </div>
     </div>
   </div>
-  <% end %>
-        <% end %>
-        <% end %>
+    <% end %>
+    <% end %>
+<% end %>
         
 </body>
 
