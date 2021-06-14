@@ -9,9 +9,9 @@ class MatchesController < ApplicationController
     @received_requests = @pet.received_requests
   end
 
-  # def show
-  #   @pet = Pet.find(params[:pet_id])
-  # end
+  def show
+    @pet = Pet.find(params[:id])
+  end
 
   def pet_match
     return if Pet.find(params[:pet_id]).id == params[:id]
@@ -27,25 +27,25 @@ class MatchesController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  # def destroy
-  #   @match.destroy
-  #   redirect_to pet_matches_path(@pet), notice: 'Match deleted!'
-  # end
-
   def accept_match
     @pet = Pet.find(params[:pet_id])
     @match = Match.find_by(sent_by_id: params[:id], sent_to_id: @pet.id, status: false)
     return unless @match
-
     @match.status = true
-    if @match.save
-      flash[:success] = 'Request Accepted!'
-      @match2 = @pet.match_sent.build(sent_to_id: params[:id], status: true)
-      @match2.save
-    else
-      flash[:danger] = 'Request not Accepted!'
+    respond_to do |format|
+      if @match.save
+        # flash[:success] = 'Request Accepted!'
+        @match2 = @pet.match_sent.build(sent_to_id: params[:id], status: true)
+        @match2.save
+        format.html { redirect_to root_path, notice: 'Request Accepted' }
+        format.json { render :show, status: :created, location: @match }
+      else
+        # flash[:danger] = 'Request not Accepted!'
+        format.html { render :accept_match, status: :unprocessable_entity }
+        format.json { render json: @match.errors, status: :unprocessable_entity }
+      end
     end
-    redirect_back(fallback_location: root_path)
+    # redirect_back(fallback_location: root_path)
   end
 
   def remove_match
@@ -58,13 +58,5 @@ class MatchesController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  # private
-
-  # def match_params
-  #   params.require(:match).permit(:sent_by_id, :sent_to_id, :status)
-  # end
-
 end
 
-# users = pets.map(&:user)
-# pets.map { |pet| pet.user }
